@@ -1,0 +1,631 @@
+[
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CropsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Crops",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Crop, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CropsController",
+    "Method": "Create",
+    "RelativePath": "api/Crops",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "crop",
+        "Type": "_52362867_MiniProj.Models.Crop",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CropsController",
+    "Method": "GetById",
+    "RelativePath": "api/Crops/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "_52362867_MiniProj.Models.Crop",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CropsController",
+    "Method": "Update",
+    "RelativePath": "api/Crops/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "input",
+        "Type": "_52362867_MiniProj.Models.Crop",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CropsController",
+    "Method": "Delete",
+    "RelativePath": "api/Crops/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CropsController",
+    "Method": "Search",
+    "RelativePath": "api/Crops/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "q",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Crop, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Cultivations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Cultivation, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "Create",
+    "RelativePath": "api/Cultivations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "_52362867_MiniProj.Controllers.CultivationsController\u002BCultivationCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "GetById",
+    "RelativePath": "api/Cultivations/{farmerId}/{cropId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cropId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "_52362867_MiniProj.Models.Cultivation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "Update",
+    "RelativePath": "api/Cultivations/{farmerId}/{cropId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cropId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "_52362867_MiniProj.Controllers.CultivationsController\u002BCultivationUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "Delete",
+    "RelativePath": "api/Cultivations/{farmerId}/{cropId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cropId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "MarkHarvested",
+    "RelativePath": "api/Cultivations/{farmerId}/{cropId}/harvest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cropId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "harvestedOn",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "GetCropsForFarmer",
+    "RelativePath": "api/Cultivations/crops-by-farmer/{farmerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Crop, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "GetFarmersForCrop",
+    "RelativePath": "api/Cultivations/farmers-by-crop/{cropId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cropId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Farmer, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.CultivationsController",
+    "Method": "GetHarvestedByFarmer",
+    "RelativePath": "api/Cultivations/harvested/by-farmer/{farmerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Cultivation, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.FarmersController",
+    "Method": "GetAll",
+    "RelativePath": "api/Farmers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Farmer, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.FarmersController",
+    "Method": "Create",
+    "RelativePath": "api/Farmers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmer",
+        "Type": "_52362867_MiniProj.Models.Farmer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.FarmersController",
+    "Method": "GetById",
+    "RelativePath": "api/Farmers/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "_52362867_MiniProj.Models.Farmer",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.FarmersController",
+    "Method": "Update",
+    "RelativePath": "api/Farmers/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "input",
+        "Type": "_52362867_MiniProj.Models.Farmer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.FarmersController",
+    "Method": "Delete",
+    "RelativePath": "api/Farmers/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.FarmersController",
+    "Method": "Search",
+    "RelativePath": "api/Farmers/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "q",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Farmer, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.SensorsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Sensors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Sensor, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.SensorsController",
+    "Method": "Create",
+    "RelativePath": "api/Sensors",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "_52362867_MiniProj.Controllers.SensorsController\u002BSensorCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.SensorsController",
+    "Method": "GetById",
+    "RelativePath": "api/Sensors/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "_52362867_MiniProj.Models.Sensor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.SensorsController",
+    "Method": "Update",
+    "RelativePath": "api/Sensors/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "_52362867_MiniProj.Controllers.SensorsController\u002BSensorUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.SensorsController",
+    "Method": "Delete",
+    "RelativePath": "api/Sensors/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.SensorsController",
+    "Method": "GetByFarmerCrop",
+    "RelativePath": "api/Sensors/by-farmer-crop",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "cropId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Sensor, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "_52362867_MiniProj.Controllers.SensorsController",
+    "Method": "Search",
+    "RelativePath": "api/Sensors/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "serial",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[_52362867_MiniProj.Models.Sensor, 52362867_MiniProj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
