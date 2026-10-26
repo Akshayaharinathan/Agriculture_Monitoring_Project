@@ -1,0 +1,127 @@
+
+<div class="dash">
+  <div class="dash__wrap">
+    <h1 class="dash__title">Dashboard</h1>
+    <p class="dash__subtitle">Quick access to your data</p>
+
+    <!-- Stats strip centered -->
+    <div
+      style="
+        display: flex;
+        justify-content: center;   /* Center horizontally */
+        gap: 20px;                 /* Space between cards */
+        flex-wrap: wrap;           /* Wrap on smaller screens */
+        margin: 20px 0;
+      "
+    >
+      <!-- Farmers -->
+      <div
+        style="
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 16px 20px;
+          min-width: 180px;
+          box-shadow: 0 6px 14px rgba(17,24,39,0.06);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 22px;">👩‍🌾</span>
+          <div>
+            <div style="font-weight: 700; color: #111827;">Farmers</div>
+            <div style="color: #6b7280; font-size: 0.9rem;">Total</div>
+          </div>
+        </div>
+        <div style="font-weight: 800; font-size: 1.4rem; color: #111827;">
+          {{ totalFarmers }}
+        </div>
+      </div>
+
+      <!-- Crops -->
+      <div
+        style="
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 16px 20px;
+          min-width: 180px;
+          box-shadow: 0 6px 14px rgba(17,24,39,0.06);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 22px;">🌾</span>
+          <div>
+            <div style="font-weight: 700; color: #111827;">Crops</div>
+            <div style="color: #6b7280; font-size: 0.9rem;">Total</div>
+          </div>
+        </div>
+        <div style="font-weight: 800; font-size: 1.4rem; color: #111827;">
+          {{ totalCrops }}
+        </div>
+      </div>
+
+      <!-- Sensors -->
+      <div
+        style="
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 16px 20px;
+          min-width: 180px;
+          box-shadow: 0 6px 14px rgba(17,24,39,0.06);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 22px;">📡</span>
+          <div>
+            <div style="font-weight: 700; color: #111827;">Sensors</div>
+            <div style="color: #6b7280; font-size: 0.9rem;">Total</div>
+          </div>
+        </div>
+        <div style="font-weight: 800; font-size: 1.4rem; color: #111827;">
+          {{ totalSensors }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Existing navigation grid -->
+    <div class="dash__grid">
+      <!-- Crops -->
+      <a class="dash__card" routerLink="/crops">
+        <div class="dash__image dash__emoji">🌾</div>
+        <div class="dash__label">Crops</div>
+        <div class="dash__desc">Manage crop master data</div>
+      </a>
+
+      <!-- Farmers -->
+      <a class="dash__card" routerLink="/farmers">
+        <div class="dash__image dash__emoji">👩‍🌾</div>
+        <div class="dash__label">Farmers</div>
+        <div class="dash__desc">View and edit farmer records</div>
+      </a>
+
+      <!-- Cultivations -->
+      <a class="dash__card" routerLink="/cultivations">
+        <div class="dash__image dash__emoji">🌱</div>
+        <div class="dash__label">Cultivations</div>
+        <div class="dash__desc">Track crop cycles per farmer</div>
+      </a>
+
+      <!-- Sensors -->
+      <a class="dash__card" routerLink="/sensors">
+        <div class="dash__image dash__emoji">📡</div>
+        <div class="dash__label">Sensors</div>
+        <div class="dash__desc">Manage deployed devices</div>
+      </a>
+    </div>
+  </div>
+</div>

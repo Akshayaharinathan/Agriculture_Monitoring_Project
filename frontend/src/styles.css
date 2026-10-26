@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; margin: 0; }
+.form { display: grid; gap: 12px; max-width: 480px; }
+.mat-mdc-form-field { width: 100%; }
+table { width: 100%; margin-top: 16px; }
+.sn-success .mdc-snackbar__surface { background: #4caf50; color: white; }
+.sn-error   .mdc-snackbar__surface { background: #f44336; color: white; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

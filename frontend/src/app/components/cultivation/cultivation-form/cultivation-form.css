@@ -1,0 +1,147 @@
+
+/* Centered page container */
+.page-wrap {
+  min-height: 100vh;
+  background: #f7f8fb;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+/* Card layout */
+.card {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(17, 24, 39, 0.08);
+  overflow: hidden;
+}
+
+.card__header {
+  padding: 18px 20px;
+  border-bottom: 1px solid #eef2f7;
+  background: #fbfdff;
+}
+
+.card__title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0;
+  color: #111827;
+}
+
+.card__subtitle {
+  margin: 4px 0 0;
+  color: #6b7280;
+}
+
+/* Body */
+.card__body {
+  padding: 18px 20px;
+  display: grid;
+  gap: 14px;
+}
+
+/* Footer */
+.card__footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 16px 20px;
+  border-top: 1px solid #eef2f7;
+  background: #fbfdff;
+}
+
+/* Form controls */
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.req {
+  color: #d93025;
+  margin-left: 4px;
+}
+
+.input {
+  height: 40px;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  background: #fff;
+}
+
+.input:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.35);
+}
+
+.error {
+  font-size: 0.85rem;
+  color: #d93025;
+}
+
+/* Hint text (subtle help text) */
+.hint {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Checkbox inline style to fit existing card look */
+.checkbox-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px dashed #e5e7eb;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.checkbox-inline input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+/* Buttons */
+.btn {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.btn:hover {
+  background: #f8f9fa;
+  border-color: #d1d5db;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: #0d6efd;
+  color: #ffffff;
+  border-color: #0b5ed7;
+}
+.btn--primary:hover {
+  background: #0b5ed7;
+}
+
+.btn--ghost {
+  background: #ffffff;
+  color: #111827;
+}

@@ -1,0 +1,55 @@
+
+<!-- src/app/components/crops/crop-form/crop-form.html -->
+<div class="page-wrap">
+  <div class="card">
+    <div class="card__header">
+      <h2 class="card__title">{{ title }}</h2>
+      <p class="card__subtitle">
+        {{ id ? 'Update crop details' : 'Create a new crop' }}
+      </p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="card__body">
+        <!-- Name -->
+        <div class="field">
+          <label for="name" class="label">Crop Name <span class="req">*</span></label>
+          <input
+            id="name"
+            type="text"
+            class="input"
+            formControlName="name"
+            placeholder="e.g., Rice, Wheat, Maize"
+          />
+          <div class="error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+            <span *ngIf="form.get('name')?.hasError('required')">Name is required.</span>
+            <span *ngIf="form.get('name')?.hasError('maxlength')">Max 120 characters.</span>
+          </div>
+        </div>
+
+        <!-- Variety -->
+        <div class="field">
+          <label for="variety" class="label">Variety <span class="req">*</span></label>
+          <input
+            id="variety"
+            type="text"
+            class="input"
+            formControlName="variety"
+            placeholder="e.g., BPT 5204, Sharbati, IR64"
+          />
+          <div class="error" *ngIf="form.get('variety')?.touched && form.get('variety')?.invalid">
+            <span *ngIf="form.get('variety')?.hasError('required')">Variety is required.</span>
+            <span *ngIf="form.get('variety')?.hasError('maxlength')">Max 120 characters.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card__footer">
+        <button type="submit" class="btn btn--primary" [disabled]="form.invalid">
+          {{ id ? 'Save Changes' : 'Create' }}
+        </button>
+        <button type="button" class="btn btn--ghost" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

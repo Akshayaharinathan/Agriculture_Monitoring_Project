@@ -1,0 +1,150 @@
+
+<!-- src/app/components/cultivation/cultivation-list/cultivation-list.html -->
+<div class="page-wrap">
+  <div class="card">
+    <!-- Header -->
+    <div class="card__header">
+      <div>
+        <h2 class="card__title">Cultivations</h2>
+        <p class="card__subtitle">Track crop cycles per farmer</p>
+      </div>
+      <div class="card__actions">
+        <button class="btn btn--primary" (click)="addNew()">+ Add Cultivation</button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <!-- Farmer -->
+      <div class="filter-item">
+        <label for="farmerFilter" class="filter-label">Farmer</label>
+        <select
+          id="farmerFilter"
+          class="select"
+          [disabled]="loading"
+          [value]="selectedFarmerId ?? ''"
+          #farmerSel
+          (change)="onFarmerFilterChange(farmerSel.value)"
+        >
+          <option value="">All farmers</option>
+          <option *ngFor="let f of farmersOptions" [value]="f.id">
+            {{ f.name }} (ID: {{ f.id }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Crop -->
+      <div class="filter-item">
+        <label for="cropFilter" class="filter-label">Crop</label>
+        <select
+          id="cropFilter"
+          class="select"
+          [disabled]="loading"
+          [value]="selectedCropId ?? ''"
+          #cropSel
+          (change)="onCropFilterChange(cropSel.value)"
+        >
+          <option value="">All crops</option>
+          <option *ngFor="let c of cropsOptions" [value]="c.id">
+            {{ c.name }} (ID: {{ c.id }})
+          </option>
+        </select>
+      </div>
+
+      <!-- NEW: Status -->
+      <div class="filter-item">
+        <label for="statusFilter" class="filter-label">Status</label>
+        <select
+          id="statusFilter"
+          class="select"
+          [disabled]="loading"
+          [value]="selectedStatus"
+          #statusSel
+          (change)="onStatusFilterChange(statusSel.value)"
+        >
+          <option value="">All statuses</option>
+          <option value="harvested">Harvested</option>
+          <option value="inprogress">In Progress</option>
+        </select>
+      </div>
+
+      <div class="filters-actions">
+        <button class="btn btn--ghost" (click)="clearFarmerFilter()" [disabled]="!selectedFarmerId">Clear farmer</button>
+        <button class="btn btn--ghost" (click)="clearCropFilter()" [disabled]="!selectedCropId">Clear crop</button>
+        <!-- NEW: Clear status -->
+        <button class="btn btn--ghost" (click)="clearStatusFilter()" [disabled]="!selectedStatus">Clear status</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="alert alert--info">Loading cultivations…</div>
+
+    <!-- Error -->
+    <div *ngIf="!loading && error" class="alert alert--danger">{{ error }}</div>
+
+    <!-- Empty -->
+    <div *ngIf="!loading && !error && (filteredCultivations?.length ?? cultivations.length) === 0" class="alert alert--warning">
+      No cultivations found for the selected filters.
+    </div>
+
+    <!-- Table -->
+    <div *ngIf="!loading && !error && (filteredCultivations?.length ?? cultivations.length) > 0" class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 90px;">ID</th>
+            <th style="width: 120px;">Farmers</th>
+            <th style="width: 120px;">Crops</th>
+            <th style="width: 150px;">Start Date</th>
+            <th style="width: 140px;">Area (acres)</th>
+            <th style="width: 130px;">Status</th>
+            <th style="width: 150px;">Harvested On</th>
+            <th style="width: 180px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of (filteredCultivations?.length ? filteredCultivations : cultivations);let i = index">
+            <td>{{ c.Id ?? (i+ 1) }}</td>
+            
+<!-- Farmer (name display) -->
+<td>
+  {{ farmerNameById(c.FarmerId) }}
+  <!-- Optional tiny ID suffix; remove if you don't want it -->
+  <small class="muted" *ngIf="c.FarmerId"> (ID: {{ c.FarmerId }})</small>
+</td>
+
+<!-- Crop (name display) -->
+<td>
+  {{ cropNameById(c.CropId) }}
+  <!-- Optional tiny ID suffix; remove if you don't want it -->
+  <small class="muted" *ngIf="c.CropId"> (ID: {{ c.CropId }})</small>
+</td>
+
+            <td>{{ c.StartDate ? (c.StartDate | date:'yyyy-MM-dd') : '—' }}</td>
+            <td>{{ c.AreaInAcres ?? '—' }}</td>
+            <td>
+              <span class="badge" [class.bg-success]="c.IsHarvested" [class.bg-warning]="!c.IsHarvested">
+                {{ harvestedLabel(c) }}
+              </span>
+            </td>
+            <td>{{ c.HarvestedOn ? (c.HarvestedOn | date:'yyyy-MM-dd') : '—' }}</td>
+            <td class="actions">
+              <button class="btn btn--ghost" (click)="edit(c.FarmerId,c.CropId)">Edit</button>
+              <button class="btn btn--danger" (click)="delete(c.FarmerId,c.CropId)">Delete</button>
+            </td>
+          </tr>
+          
+<!-- Place this inside your card header or wherever you want -->
+<button class="btn btn--ghost"
+        routerLink="/dashboard"
+        aria-label="Go to Dashboard">
+  ← Back
+</button>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+``

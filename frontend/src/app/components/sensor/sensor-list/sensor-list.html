@@ -1,0 +1,150 @@
+
+<!-- src/app/components/sensor/sensor-list/sensor-list.html -->
+<div class="page-wrap">
+  <div class="card">
+    <!-- Header -->
+    <div class="card__header">
+      <div>
+        <h2 class="card__title">Sensors</h2>
+        <p class="card__subtitle">Manage deployed devices</p>
+      </div>
+      <div class="card__actions">
+        <button class="btn btn--primary" (click)="addNew()">+ Add Sensor</button>
+      </div>
+    </div>
+
+    <!-- Filters: INLINE BAR -->
+    <div class="filters">
+      <!-- Farmer -->
+      <div class="filter-item">
+        <label for="farmerFilter" class="filter-label">Farmer</label>
+        <select
+          id="farmerFilter"
+          class="select"
+          [disabled]="loading"
+          [value]="selectedFarmerId ?? ''"
+          #farmerSel
+          (change)="onFarmerFilterChange(farmerSel.value)"
+        >
+          <option value="">All farmers</option>
+          <option *ngFor="let f of farmersOptions" [value]="f.id">
+            {{ f.name }} (ID: {{ f.id }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Crop -->
+      <div class="filter-item">
+        <label for="cropFilter" class="filter-label">Crop</label>
+        <select
+          id="cropFilter"
+          class="select"
+          [disabled]="loading"
+          [value]="selectedCropId ?? ''"
+          #cropSel
+          (change)="onCropFilterChange(cropSel.value)"
+        >
+          <option value="">All crops</option>
+          <option *ngFor="let c of cropsOptions" [value]="c.id">
+            {{ c.name }} (ID: {{ c.id }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Status -->
+      <div class="filter-item">
+        <label for="statusFilter" class="filter-label">Status</label>
+        <select
+          id="statusFilter"
+          class="select"
+          [disabled]="loading"
+          [value]="selectedStatus"
+          #statusSel
+          (change)="onStatusFilterChange(statusSel.value)"
+        >
+          <option value="">All statuses</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Inline clear actions -->
+      <div class="filters-actions">
+        <button class="btn btn--ghost" (click)="clearFarmerFilter()" [disabled]="!selectedFarmerId">Clear farmer</button>
+        <button class="btn btn--ghost" (click)="clearCropFilter()" [disabled]="!selectedCropId">Clear crop</button>
+        <button class="btn btn--ghost" (click)="clearStatusFilter()" [disabled]="!selectedStatus">Clear status</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="alert alert--info">Loading sensors…</div>
+
+    <!-- Error -->
+    <div *ngIf="!loading && error" class="alert alert--danger">{{ error }}</div>
+
+    <!-- Empty -->
+    <div *ngIf="!loading && !error && (filteredSensors?.length ?? sensors.length) === 0" class="alert alert--warning">
+      No sensors found for the selected filters.
+    </div>
+
+    <!-- Table -->
+    <div *ngIf="!loading && !error && (filteredSensors?.length ?? sensors.length) > 0" class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 90px;">ID</th>
+            <th>Serial Number</th>
+            <th>Type</th>
+            <th style="width: 180px;">Farmer</th>
+            <th style="width: 180px;">Crop</th>
+            <th style="width: 150px;">Installed On</th>
+            <th style="width: 120px;">Status</th>
+            <th style="width: 180px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of (filteredSensors?.length ? filteredSensors : sensors)">
+            <td>{{ s.Id ?? '—' }}</td>
+            <td>{{ s.SerialNumber ?? '—' }}</td>
+            <td>{{ s.Type ?? '—' }}</td>
+
+            <!-- Names from ID -->
+            
+<td>
+  <!-- Show farmer name if options are loaded; fallback to ID -->
+  {{ farmerNameById(s.FarmerId) ?? '—' }}
+  <small class="muted" *ngIf="s.FarmerId"> (ID: {{ s.FarmerId }})</small>
+</td>
+
+<td>
+  <!-- Show crop name if options are loaded; fallback to ID -->
+  {{ cropNameById(s.CropId) ?? '—' }}
+  <small class="muted" *ngIf="s.CropId"> (ID: {{ s.CropId }})</small>
+</td>
+
+
+            <td>{{ s.InstalledOn ? (s.InstalledOn | date:'yyyy-MM-dd') : '—' }}</td>
+            <td>
+              <span class="badge" [class.bg-success]="activeBadgeClass(s) === 'bg-success'"
+                                  [class.bg-secondary]="activeBadgeClass(s) === 'bg-secondary'">
+                {{ activeLabel(s) }}
+              </span>
+            </td>
+            <td class="actions">
+              <button class="btn btn--ghost" (click)="edit(s.Id)">Edit</button>
+              <button class="btn btn--danger" (click)="delete(s.Id)">Delete</button>
+            </td>
+          </tr>
+          
+<button class="btn btn--ghost"
+        (click)="goToDashboard()"
+        aria-label="Go to Dashboard">
+  ← Back
+</button>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

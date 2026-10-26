@@ -1,0 +1,44 @@
+
+<!-- src/app/components/farmer/farmer-form.html -->
+<div class="page-wrap">
+  <div class="card">
+    <div class="card__header">
+      <h2 class="card__title">{{ title }}</h2>
+      <p class="card__subtitle">
+        {{ id ? 'Update an existing farmer' : 'Create a new farmer' }}
+      </p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="card__body">
+
+        <!-- Name -->
+        <div class="field">
+          <label for="name" class="label">Name <span class="req">*</span></label>
+          <input
+            id="name"
+            type="text"
+            class="input"
+            formControlName="name"
+            placeholder="Enter full name"
+          />
+          <div class="error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+            <span *ngIf="form.get('name')?.hasError('required')">Name is required.</span>
+            <span *ngIf="form.get('name')?.hasError('maxlength')">Max 120 characters.</span>
+          </div>
+        </div>
+
+       
+
+      </div>
+
+      <div class="card__footer">
+        <button type="submit" class="btn btn--primary" [disabled]="form.invalid">
+          {{ id ? 'Save Changes' : 'Create' }}
+        </button>
+        <button type="button" class="btn btn--ghost" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+

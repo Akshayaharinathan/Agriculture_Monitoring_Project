@@ -1,0 +1,116 @@
+
+/* src/app/components/dashboard/dashboard.css */
+
+:root {
+  --bg: #f7f8fb;
+  --text: #111827;
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-hover: #f3f4f6;
+  --primary: #0d6efd;
+
+  --radius: 16px;
+  --shadow: 0 10px 22px rgba(17, 24, 39, 0.08);
+}
+
+.dash {
+  min-height: 100vh;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.dash__wrap {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+}
+
+.dash__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+
+.dash__subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.dash__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 24px;
+  justify-items: center;
+}
+
+@media (max-width: 720px) {
+  .dash__grid { grid-template-columns: 1fr; }
+}
+
+.dash__card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 20px;
+  text-decoration: none;
+  color: var(--text);
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.dash__card:hover {
+  transform: translateY(-2px);
+  background: var(--card-hover);
+  border-color: #d1d5db;
+  box-shadow: 0 14px 28px rgba(17, 24, 39, 0.12);
+}
+
+.dash__image {
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
+  background: #eef4ff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #e0e7ff;
+}
+
+.dash__image img {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.dash__emoji {
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+
+.dash__label {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.dash__desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+}

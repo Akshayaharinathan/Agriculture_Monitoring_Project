@@ -1,0 +1,110 @@
+
+<!-- Farmer List (simple, professional table with ID, Name, Crops, Sensors) -->
+<div class="page-wrap">
+  <div class="card">
+
+    <!-- Header -->
+    <div class="card__header">
+      <div>
+        <h2 class="card__title">Farmers</h2>
+        <p class="card__subtitle">Manage farmer records</p>
+      </div>
+      <div class="card__actions">
+        <button class="btn btn--primary" (click)="addNew()">+ Add Farmer</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="alert alert--info">Loading farmers…</div>
+
+    <!-- Error -->
+    <div *ngIf="!loading && error" class="alert alert--danger">{{ error }}</div>
+
+    <!-- Empty -->
+    <div *ngIf="!loading && !error && farmers.length === 0" class="alert alert--warning">
+      No farmers found. Click <strong>Add Farmer</strong> to create one.
+    </div>
+
+    <!-- Table -->
+    <div *ngIf="!loading && !error && farmers.length > 0" class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 120px;">ID</th>
+            <th>Name</th>
+            <th style="width: 140px;">Crops</th>
+            <th style="width: 140px;">Sensors</th>
+            <th style="width: 180px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Use paginatedFarmers instead of farmers -->
+          <tr *ngFor="let f of paginatedFarmers">
+            <td>{{ f.id ?? '—' }}</td>
+
+            <td>
+              <div class="cell-main">
+                <span class="avatar" aria-hidden="true">{{ (f.name ?? 'F')[0] }}</span>
+                <span class="name">{{ f.name ?? '—' }}</span>
+              </div>
+            </td>
+
+            <td>{{ cropsCountForFarmer(f.id) }}</td>
+            <td>{{ sensorsCountForFarmer(f.id) }}</td>
+
+            <td class="actions">
+              <button class="btn btn--ghost" (click)="edit(f.id)">Edit</button>
+              <button class="btn btn--danger" (click)="delete(f.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination Footer -->
+      <div class="pagination" role="navigation" aria-label="Pagination">
+        <button
+          class="btn btn--ghost"
+          (click)="prevPage()"
+          [disabled]="currentPage === 1"
+          aria-label="Previous page">
+          ‹ Prev
+        </button>
+
+        <span class="pagination__info" aria-live="polite">
+          Page {{ currentPage }} of {{ totalPages }}
+        </span>
+
+        <button
+          class="btn btn--ghost"
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages"
+          aria-label="Next page">
+          Next ›
+        </button>
+      </div>
+
+      <!-- Optional: direct page jump -->
+      <!--
+      <div class="pagination__jump">
+        <label for="pageInput">Go to page:</label>
+        <input id="pageInput" type="number" [min]="1" [max]="totalPages" [value]="currentPage"
+               (change)="goToPage($any($event.target).value)">
+      </div>
+      -->
+
+      <!-- Optional: change page size -->
+      <!--
+      <div class="pagination__size">
+        <label for="pageSize">Rows per page:</label>
+        <select id="pageSize" [(ngModel)]="pageSize" (change)="goToPage(1)">
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="25">25</option>
+        </select>
+      </div>
+      -->
+      <button class="btn btn--ghost" (click)="goToDashboard()" aria-label="Go to Dashboard">← Back</button><br>
+  </div>
+    </div>
+
+</div>

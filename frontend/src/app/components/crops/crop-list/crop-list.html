@@ -1,0 +1,57 @@
+
+<!-- src/app/components/crop/crop-list/crop-list.html -->
+<div class="page-wrap">
+  <div class="card">
+    <!-- Header -->
+    <div class="card__header">
+      <div>
+        <h2 class="card__title">Crops</h2>
+        <p class="card__subtitle">Manage crop records</p>
+      </div>
+      <div class="card__actions">
+        
+        <button class="btn btn--primary" (click)="addNew()">+ Add Crop</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="alert alert--info">Loading crops…</div>
+
+    <!-- Error -->
+    <div *ngIf="!loading && error" class="alert alert--danger">{{ error }}</div>
+
+    <!-- Empty -->
+    <div *ngIf="!loading && !error && crops.length === 0" class="alert alert--warning">
+      No crops found. Click <strong>Add Crop</strong> to create one.
+    </div>
+
+    <!-- Table -->
+    <div *ngIf="!loading && !error && crops.length > 0" class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 120px;">ID</th>
+            <th>Name</th>
+            <th>Variety</th>                     <!-- ⬅️ NEW -->
+            <th style="width: 140px;">Sensors</th>
+            <th style="width: 180px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let crop of crops">
+            <td>{{ crop.id ?? '—' }}</td>
+            <td>{{ crop.name ?? '—' }}</td>
+            <td>{{ crop.variety ?? '—' }}</td>   <!-- ⬅️ NEW -->
+            <td>{{ sensorsCountForCrop(crop.id) }}</td>
+            <td class="actions">
+              <button class="btn btn--ghost" (click)="edit(crop.id)">Edit</button>
+              <button class="btn btn--danger" (click)="delete(crop.id)">Delete</button>
+            </td>
+          </tr>
+          <button class="btn btn--ghost" (click)="goToDashboard()" aria-label="Go to Dashboard">← Back</button>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,132 @@
+
+<!-- src/app/components/cultivation/cultivation-form/cultivation-form.html -->
+<div class="page-wrap">
+  <div class="card">
+    <div class="card__header">
+      <h2 class="card__title">{{ title }}</h2>
+      <p class="card__subtitle">
+        {{ id ? 'Update an existing cultivation' : 'Create a new cultivation' }}
+      </p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="card__body">
+
+        <!-- Farmer (Name dropdown that drives FarmerId) -->
+        <div class="field">
+          <label for="FarmerName" class="label">Farmer <span class="req">*</span></label>
+          <select
+            id="FarmerName"
+            class="select"
+            [disabled]="loadingOptions"
+            [value]="selectedFarmerNameId ?? ''"
+            #farmerNameSel
+            (change)="onFarmerNameChange(farmerNameSel.value)"
+          >
+            <option value="">Select a farmer</option>
+            <option *ngFor="let f of farmersOptions" [value]="f.id">
+              {{ f.name }} (ID: {{ f.id }})
+            </option>
+          </select>
+          <small class="hint">Choosing a farmer sets <strong>FarmerId</strong> automatically.</small>
+
+          <!-- Validation feedback based on FarmerId control -->
+          <div class="error" *ngIf="form.get('FarmerId')?.touched && form.get('FarmerId')?.invalid">
+            <span *ngIf="form.get('FarmerId')?.hasError('required')">Farmer is required.</span>
+            <span *ngIf="form.get('FarmerId')?.hasError('min')">Invalid farmer selection.</span>
+          </div>
+        </div>
+
+        <!-- Crop (Name dropdown that drives CropId) -->
+        <div class="field">
+          <label for="CropName" class="label">Crop <span class="req">*</span></label>
+          <select
+            id="CropName"
+            class="select"
+            [disabled]="loadingOptions"
+            [value]="selectedCropNameId ?? ''"
+            #cropNameSel
+            (change)="onCropNameChange(cropNameSel.value)"
+          >
+            <option value="">Select a crop</option>
+            <option *ngFor="let c of cropsOptions" [value]="c.id">
+              {{ c.name }} (ID: {{ c.id }})
+            </option>
+          </select>
+          <small class="hint">Choosing a crop sets <strong>CropId</strong> automatically.</small>
+
+          <!-- Validation feedback based on CropId control -->
+          <div class="error" *ngIf="form.get('CropId')?.touched && form.get('CropId')?.invalid">
+            <span *ngIf="form.get('CropId')?.hasError('required')">Crop is required.</span>
+            <span *ngIf="form.get('CropId')?.hasError('min')">Invalid crop selection.</span>
+          </div>
+        </div>
+
+        <!-- (Optional) Show the resolved IDs as read-only fields for transparency -->
+        
+<div style="display:none">
+  <input type="number" formControlName="FarmerId" />
+  <input type="number" formControlName="CropId" />
+</div>
+
+
+        <!-- StartDate -->
+        <div class="field">
+          <label for="StartDate" class="label">Start Date</label>
+          <input id="StartDate" type="date" class="input" formControlName="StartDate" />
+        </div>
+
+        <!-- AreaInAcres -->
+        <div class="field">
+          <label for="AreaInAcres" class="label">Area (acres)</label>
+          <input
+            id="AreaInAcres"
+            type="number"
+            class="input"
+            min="0"
+            step="0.01"
+            placeholder="e.g., 2.50"
+            formControlName="AreaInAcres"
+          />
+          <div class="error" *ngIf="form.get('AreaInAcres')?.touched && form.get('AreaInAcres')?.invalid">
+            <span *ngIf="form.get('AreaInAcres')?.hasError('min')">Area cannot be negative.</span>
+          </div>
+        </div>
+
+        <!-- IsHarvested -->
+        <div class="field">
+          <label class="label" for="IsHarvested">Harvested</label>
+          <div class="checkbox-inline">
+            <input id="IsHarvested" type="checkbox" formControlName="IsHarvested" />
+            <span>Mark as harvested</span>
+          </div>
+          <small class="hint">Check if the crop has been harvested.</small>
+        </div>
+
+        <!-- HarvestedOn -->
+        <div class="field">
+          <label for="HarvestedOn" class="label">Harvested On</label>
+          <input
+            id="HarvestedOn"
+            type="date"
+            class="input"
+            formControlName="HarvestedOn"
+            [disabled]="!form.get('IsHarvested')?.value"
+          />
+          <small class="hint" *ngIf="!form.get('IsHarvested')?.value">
+            Enable by checking <strong>Harvested</strong>.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="card__footer">
+        <button type="submit" class="btn btn--primary" [disabled]="form.invalid">
+          {{ id ? 'Save Changes' : 'Create' }}
+        </button>
+        <button type="button" class="btn btn--ghost" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+

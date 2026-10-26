@@ -1,0 +1,137 @@
+
+<!-- src/app/components/sensor/sensor-form/sensor-form.html -->
+<div class="page-wrap">
+  <div class="card">
+    <div class="card__header">
+      <h2 class="card__title">{{ title }}</h2>
+      <p class="card__subtitle">
+        {{ id ? 'Update sensor details' : 'Create a new sensor' }}
+      </p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="card__body">
+
+        <!-- Serial Number -->
+        <div class="field">
+          <label for="serialNumber" class="label">Serial Number <span class="req">*</span></label>
+          <input
+            id="serialNumber"
+            type="text"
+            class="input"
+            formControlName="SerialNumber"
+            placeholder="e.g., SN-123456789"
+          />
+          <div class="error" *ngIf="form.get('SerialNumber')?.touched && form.get('SerialNumber')?.invalid">
+            <span *ngIf="form.get('SerialNumber')?.hasError('required')">Serial Number is required.</span>
+            <span *ngIf="form.get('SerialNumber')?.hasError('maxlength')">Max 120 characters.</span>
+          </div>
+        </div>
+
+        <!-- Type -->
+        <div class="field">
+          <label for="type" class="label">Type <span class="req">*</span></label>
+          <input
+            id="type"
+            type="text"
+            class="input"
+            formControlName="Type"
+            placeholder="e.g., SoilMoisture, pH"
+          />
+          <div class="error" *ngIf="form.get('Type')?.touched && form.get('Type')?.invalid">
+            <span *ngIf="form.get('Type')?.hasError('required')">Type is required.</span>
+            <span *ngIf="form.get('Type')?.hasError('maxlength')">Max 50 characters.</span>
+          </div>
+        </div>
+
+        <!-- Farmer (Name dropdown that drives FarmerId) -->
+        <div class="field">
+          <label for="FarmerName" class="label">Farmer <span class="req">*</span></label>
+          <select
+            id="FarmerName"
+            class="select"
+            [disabled]="loadingOptions"
+            [value]="selectedFarmerNameId ?? ''"
+            #farmerNameSel
+            (change)="onFarmerNameChange(farmerNameSel.value)"
+          >
+            <option value="">Select a farmer</option>
+            <option *ngFor="let f of farmersOptions" [value]="f.id">
+              {{ f.name }} (ID: {{ f.id }})
+            </option>
+          </select>
+          <small class="hint">Choosing a farmer sets <strong>FarmerId</strong> automatically.</small>
+
+          <!-- Validation feedback based on FarmerId control -->
+          <div class="error" *ngIf="form.get('FarmerId')?.touched && form.get('FarmerId')?.invalid">
+            <span *ngIf="form.get('FarmerId')?.hasError('required')">Farmer is required.</span>
+            <span *ngIf="form.get('FarmerId')?.hasError('min')">Invalid farmer selection.</span>
+          </div>
+        </div>
+
+        <!-- Crop (Name dropdown that drives CropId) -->
+        <div class="field">
+          <label for="CropName" class="label">Crop <span class="req">*</span></label>
+          <select
+            id="CropName"
+            class="select"
+            [disabled]="loadingOptions"
+            [value]="selectedCropNameId ?? ''"
+            #cropNameSel
+            (change)="onCropNameChange(cropNameSel.value)"
+          >
+            <option value="">Select a crop</option>
+            <option *ngFor="let c of cropsOptions" [value]="c.id">
+              {{ c.name }} (ID: {{ c.id }})
+            </option>
+          </select>
+          <small class="hint">Choosing a crop sets <strong>CropId</strong> automatically.</small>
+
+          <!-- Validation feedback based on CropId control -->
+          <div class="error" *ngIf="form.get('CropId')?.touched && form.get('CropId')?.invalid">
+            <span *ngIf="form.get('CropId')?.hasError('required')">Crop is required.</span>
+            <span *ngIf="form.get('CropId')?.hasError('min')">Invalid crop selection.</span>
+          </div>
+        </div>
+
+        <!-- (Optional) show resolved IDs as read-only inputs -->
+        <div class="row">
+          <div class="field">
+            <label class="label">Selected Farmer ID</label>
+            <input type="number" class="input" formControlName="FarmerId" readonly />
+          </div>
+          <div class="field">
+            <label class="label">Selected Crop ID</label>
+            <input type="number" class="input" formControlName="CropId" readonly />
+          </div>
+        </div>
+        <!-- If you prefer to hide them completely:
+        <div style="display:none">
+          <input type="number" formControlName="FarmerId" />
+          <input type="number" formControlName="CropId" />
+        </div>
+        -->
+
+        <!-- InstalledOn -->
+        <div class="field">
+          <label for="installedOn" class="label">Installed On</label>
+          <input id="installedOn" type="date" class="input" formControlName="InstalledOn" />
+        </div>
+
+        <!-- IsActive -->
+        <div class="field field--checkbox">
+          <input id="isActive" type="checkbox" class="checkbox" formControlName="IsActive" />
+          <label for="isActive" class="label label--inline">Active</label>
+        </div>
+
+      </div>
+
+      <div class="card__footer">
+        <button type="submit" class="btn btn--primary" [disabled]="form.invalid">
+          {{ id ? 'Save Changes' : 'Create' }}
+        </button>
+        <button type="button" class="btn btn--ghost" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
